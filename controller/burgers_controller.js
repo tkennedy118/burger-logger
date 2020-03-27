@@ -19,10 +19,8 @@ router.get("/", (req, res) => {
 // route to add a burger. get request body information and sends it into burger model 
 // function. renders id of inserted burger
 router.post("/api/burgers", (req, res) => {
-    const col = "burger_name";
-    const val = req.body.burger_name;
-
-    const data = burger.insertOne(col, val);
+ 
+    const data = burger.insertOne("burger_name", req.body.burger_name);
     res.json({ id: data.indertId });
 });
 
@@ -30,11 +28,7 @@ router.post("/api/burgers", (req, res) => {
 // function. responds with not found status if no rows are changed, otherwise responds
 // with success status
 router.put("/api/burgers/:id", (req, res) => {
-    const col = "burger_name";
-    const val = req.body.burger_name;
-    const cond = "id = " + req.params.id;
-
-    const data = burger.updateOne(col, val, cond);
+    const data = burger.updateOne("burger_name", req.body.devoured, `id = ${req.params.id}`);
     
     if (data.changedRows === 0) {
         res.status(404).end();
