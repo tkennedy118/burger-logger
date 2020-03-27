@@ -7,12 +7,12 @@ const burger = {
         return orm.all(table);
     },
 
-    insertOne: function(col) {
-        return orm.insertOne(table, col);
+    insertOne: function(col, val) {
+        return orm.insertOne(table, col, val);
     },
 
-    updateOne: function(col, cond) {
-        return orm.updateOne(table, col, cond);
+    updateOne: function(col, val, cond) {
+        return orm.updateOne(table, col, val, cond);
     }
 }
 
