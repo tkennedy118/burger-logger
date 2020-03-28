@@ -19,14 +19,16 @@ router.get("/", async (req, res) => {
 router.post("/api/burgers", async (req, res) => {
     
     const data = await burger.insertOne("burger_name", req.body.burger_name);
-    res.json({ id: data.indertId });
+    res.json({ id: data.insertId });
 });
 
 // route to update a burger. get request information and send it into burger model 
 // function. responds with not found status if no rows are changed, otherwise responds
 // with success status
 router.put("/api/burgers/:id", async (req, res) => {
-    const data = await burger.updateOne("burger_name", req.body.devoured, `id = ${req.params.id}`);
+
+    const devInt = (req.body.devoured == "true") ? 1 : 0;
+    const data = await burger.updateOne("devoured", devInt, `id = ${req.params.id}`);
     
     if (data.changedRows === 0) {
         res.status(404).end();
