@@ -1,25 +1,37 @@
-<div class="container">
-    <h1 class="text-center mb-2">Eat Your Burgers!</h1>
+<div class="jumbotron">
+    <h1 class="text-center  display-1 mb-1">Eat Your Burgers!</h1>
+</div>
 
+<div class="container">
     <div class="row">
         <div class="col-sm-6">
-            <h2>Not Eaten</h2>
-            <u1>
+            <h2 class="display-4 text-center">Not Eaten</h2>
+            <u1 class="list-group list-group-flush">
                 {{#each burgers}}
                     {{#unless devoured}}
-                        {{burger_name}}
-                        <button type="button" class="btn btn-danger eat-burger-btn" data-id="{{id}}" data-devoured="{{devoured}}">Eat Burger!</button>
+                        <li class="list-group-item">
+                            <div class="row">
+                                <div class="col-8">
+                                    {{burger_name}}
+                                </div>
+                                <div class="col-4">
+                                    <button type="button" class="btn btn-outline-primary eat-burger-btn" data-id="{{id}}" data-devoured="{{devoured}}">Chow it down</button>
+                                </div>
+                            </div>
+                        </li>
                     {{/unless}}
                 {{/each}}
             </u1>
         </div>
 
         <div class="col-sm-6">
-            <h2>Eaten</h2>
-            <u1>
+            <h2 class="display-4 text-center">Eaten</h2>
+            <u1 class="list-group list-group-flush text-center">
                 {{#each burgers}}
                     {{#if devoured}}
-                        {{burger_name}}
+                        <li class="list-group-item">
+                            {{burger_name}}
+                        </li>
                     {{/if}}
                 {{/each}}
             </u1>
@@ -28,11 +40,13 @@
     <div class="row">
         <div class="col">
             <form id="add-burger-form">
-                <div class="form-group">
-                    <label for "burger-textarea">Add a burger here</label>
-                    <textarea class="form-control" id="burger-textarea" name="burger-textarea" rows="3"></textarea>
+                <div class="form-group text-center mt-5">
+                    <label for="burger-textarea" class="lead">Add a burger here</label>
+                    <textarea class="form-control text-center" id="burger-textarea" name="burger-textarea" rows="3"></textarea>
                 </div>
-                <button type="submit" class="btn btn-primary add-burger-btn">Add Burger!</button>
+                <div class="text-center">
+                    <button type="submit" class="btn btn-primary add-burger-btn">Add Burger!</button>
+                </div>
             </form>
         </div>
     </div>
