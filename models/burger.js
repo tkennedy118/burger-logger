@@ -1,10 +1,9 @@
 const orm = require('../config/orm');
 
+const table = "burgers";
 const burger = {
-    table: "burgers",
-
     all: function() {
-        return orm.all(table);
+        return orm.selectAll(table);
     },
 
     insertOne: function(col, val) {
