@@ -5,27 +5,27 @@ connection.query = util.promisify(connection.query).bind(connection);
 
 const orm = {
 
-    selectAll: function(table) {
+    selectAll: async function(table) {
         const query = `SELECT * FROM ${table}`;
-        const result = connection.query(query);
+        const result = await connection.query(query);
 
         if (!result) throw new Error("Could not retrieve burger information");
         return result;
     },
 
-    insertOne: function(table, col, val) {
+    insertOne: async function(table, col, val) {
         const query = `INSERT INTO ${table} (${col}) VALUES ('${val}')`;
-        const result = connection.query(query);
+        const result = await connection.query(query);
 
         if (!result) throw new Error("Could not add burger to table");
         console.log(`Added ${result.affectedRows} row`);
         return result;
     },
 
-    updateOne: function(table, col, val, cond) {
+    updateOne: async function(table, col, val, cond) {
 
         const query = `UPDATE ${table} SET ${col} = '${val}' WHERE ${cond}`;
-        const result = connection.query(query);
+        const result = await connection.query(query);
 
         if (!result) throw new Error("Could not update burger");
         console.log(`Updated ${result.changedRows} row`);

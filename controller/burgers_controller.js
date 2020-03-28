@@ -9,17 +9,15 @@ const router = express.Router();
 // route to get all burgers. uses burger model to create handlebars obj and renders object
 // to index.handlebars
 router.get("/", async (req, res) => {
-    const data = await burger.all();
-    const hbsObj = { burger: data };
 
-    console.log(hbsObj);
-    res.render("index", hbsObj);
+    const data = await burger.all();
+    res.render("index", { burgers: data });
 });
 
 // route to add a burger. get request body information and sends it into burger model 
 // function. renders id of inserted burger
 router.post("/api/burgers", async (req, res) => {
- 
+    
     const data = await burger.insertOne("burger_name", req.body.burger_name);
     res.json({ id: data.indertId });
 });
