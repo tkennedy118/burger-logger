@@ -26,9 +26,7 @@ router.post("/api/burgers", async (req, res) => {
 // function. responds with not found status if no rows are changed, otherwise responds
 // with success status
 router.put("/api/burgers/:id", async (req, res) => {
-
-    const devInt = (req.body.devoured == "true") ? 1 : 0;
-    const data = await burger.updateOne("devoured", devInt, `id = ${req.params.id}`);
+    const data = await burger.updateOne("devoured", req.body.devoured, `id = ${req.params.id}`);
     
     if (data.changedRows === 0) {
         res.status(404).end();

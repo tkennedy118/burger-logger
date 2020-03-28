@@ -24,7 +24,7 @@ const orm = {
 
     updateOne: async function(table, col, val, cond) {
 
-        const query = `UPDATE ${table} SET ${col} = '${val}' WHERE ${cond}`;
+        const query = `UPDATE ${table} SET ${col} = ${val} WHERE ${cond}`;
         const result = await connection.query(query);
 
         if (!result) throw new Error("Could not update burger");
